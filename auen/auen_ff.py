@@ -39,10 +39,10 @@ def run_one(N1):
     encoder = Model(input_vector, encoded)
     decoder = Model(encoded_input, ae.layers[-1](ae.layers[-2](encoded_input)))
 
-    train = (pd.read_csv('breast.train.csv').values).astype('float32')
+    train = (pd.read_csv('data/breast.train.csv').values).astype('float32')
     x_train = train[:, 0:P] / F_MAX
 
-    test = (pd.read_csv('breast.test.csv').values).astype('float32')
+    test = (pd.read_csv('data/breast.test.csv').values).astype('float32')
     x_test = test[:, 0:P] / F_MAX
 
     ae.compile(optimizer='rmsprop', loss='mean_squared_error')
@@ -56,8 +56,6 @@ def run_one(N1):
     print('Results for N1=%s: %s'%(N1,result.history['val_loss']))
 
 
-for N1 in [100,500,1000,1500,2000,2500,3000]:
-    run_one(N1)
 
     
 # Code used to print histogram of result
