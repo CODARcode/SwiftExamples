@@ -53,7 +53,7 @@ def run_one(N1):
                     verbose=0, # To avoid printing status during run
                     validation_data=[x_test, x_test])
 
-    print('Results for N1=%s: %s'%(N1,r.history['val_loss']))
+    print('Results for N1=%s: %s'%(N1,result.history['val_loss']))
 
 
 for N1 in [100,500,1000,1500,2000,2500,3000]:
