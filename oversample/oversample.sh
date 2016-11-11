@@ -15,6 +15,9 @@ export PYTHONPATH=$pyInst/lib/python2.7:$pyInst/lib/python2.7/site-packages
 
 OVERSAMPLE_TEST=/lustre/beagle2/lpBuild/CANDLE/lorenzo/oversample-test.py
 
+# Override HOME to find Keras rc file
+export HOME=/lustre/beagle2/wozniak
+
 {
   which python
   echo PYTHONPATH: $PYTHONPATH
