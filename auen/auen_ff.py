@@ -19,7 +19,10 @@ F_MAX = 33.3
 DR    = 0.2
 
 
-def run_one(N1):
+def run_one(N1, NE=600):
+
+    print("run_one: N1=%0.0f NE=%0.0f" % (N1,NE))
+
     input_vector = Input(shape=(P,))
     x = Dense(N1, activation='sigmoid')(input_vector)
     # x = Dropout(DR)(x)
