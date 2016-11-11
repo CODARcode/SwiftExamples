@@ -19,7 +19,7 @@ F_MAX = 33.3
 DR    = 0.2
 
 
-def run_one(N1, NE=600):
+def run_one(N1, NE=600, output="stdout"):
 
     print("run_one: N1=%0.0f NE=%0.0f" % (N1,NE))
 
@@ -56,10 +56,12 @@ def run_one(N1, NE=600):
                     verbose=0, # To avoid printing status during run
                     validation_data=[x_test, x_test])
 
-    print('Results for N1=%s: %s'%(N1,result.history['val_loss']))
-
-
-
+    if output == "stdout":
+        print('Results for N1=%s: %s'%(N1,result.history['val_loss']))
+    else:
+        with open(output, "w") as fp:
+            # fp.write(str(result.history['val_loss']))
+            fp.write("0\n") # Dummy value
     
 # Code used to print histogram of result
 #encoded_image = encoder.predict(x_test)
