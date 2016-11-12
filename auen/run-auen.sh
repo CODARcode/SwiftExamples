@@ -21,8 +21,11 @@ export LD_LIBRARY_PATH=/lustre/beagle2/lpBuild/CANDLE/python/Python-2.7.12-inst/
 export HOME=/lustre/beagle2/$USER
 echo HOME $HOME
 
-printenv
+# printenv
 
-# $PYTHON /lustre/beagle2/wozniak/proj/codar/auen/run-auen.py $*
-aprun -n 1 $PYTHON /lustre/beagle2/wozniak/proj/codar/auen/try_pandas.py $*
+source /opt/modules/3.2.6.7/init/bash
+module load PrgEnv-gnu
+
+aprun -n 1 $PYTHON /lustre/beagle2/wozniak/proj/codar/auen/run-auen.py ARGS()
+# aprun -n 1 $PYTHON /lustre/beagle2/wozniak/proj/codar/auen/try_pandas.py $*
 # aprun $PYTHON -V
