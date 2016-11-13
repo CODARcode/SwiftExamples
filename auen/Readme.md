@@ -3,21 +3,10 @@
 
 ## Initial goal: Basic parameter sweep over AUEN
 
-This demo runs a parameter sweep over AUEN/Theano, with parameter _NE_=`[`100,500,1000,1500,2000,2500,3000`]`
+This demo runs a parameter sweep over AUEN/Theano, with parameter _NE_=100,500,1000,1500,2000,2500,3000
 
 *Quick start:* To run on the Beagle compute nodes, type:
 
-```
-swift-t -m cray -n 3 run-many.swift --auen_home=$PWD
-```
-
-Meaning:
-
-* `swift-t`: The Swift/T workflow tool
-* `-m cray`: Launch a Cray APRUN job
-* `-n 3`: Run 2 AUENs at a time (one process for Swift)
-* `run-many.swift`: The Swift parameter sweep (see below)
-* `--auen_home=$PWD`: Set a home location so 
 
 ## File list
 
@@ -27,13 +16,20 @@ See file headers for additional notes.
 
 * `run-many.py`: Initial Python sequential parameter sweep over `run_one()`
 * `run-auen.sh`: Shell wrapper for `run-auen.py`, setting system paths, etc.  Forwards command line to `run-auen.py`.  Example usage: `./run-auen.sh 2500 600 stdout`
-* `run-auen.py`: Python main program to accept command line arguments for `auen_ff.py:run_one()`.  
-* `run-auen.swift`: Parallel Swift script to perform parameter sweep concurrently, similar to `run-many.py`.  Example usage: `swift-t -n PROCS run-many.swift`.  Runs _PROCS_-1 tasks at a time (one process is reserved for Swift).
+* `run-auen.py`: Python main program to accept command line arguments for `auen_ff.py:run_one()`.
+* `run-swift.sh`: Shell wrapper to launch a Swift-based parallel job
+ * `swift-t`: The Swift/T workflow tool
+ * `-m cray`: Launch a Cray APRUN job
+ * `-n $PROCS`: Run _PROCS_-1 AUENs at a time (one process for Swift)
+ * `run-many.swift`: The Swift parameter sweep (see below)
+ * `--auen_home=$PWD`: Set a home location so AUEN can find its data
+ * The output will go into the reported `TURBINE_OUTPUT` directory, a numbered  directory under `$PWD`
 
 ### Supporting files
 
 * `auen_ff.py`: Original application file from Fangfang, but modified to be a library.  The new key function is `run_one()`.
-* `data/`: Bulk data directory.  Bulk data files are not in GitHub.  A copy of Fangfang's data is on Beagle at `~wozniak/Public/data/auen1`.  Create a directory here called `data/` and copy the CSV files into it.  
+* `data/`: Bulk data directory.  Bulk data files are not in GitHub.  A copy of Fangfang's data is on Beagle at `~wozniak/Public/data/auen1`.  Create a directory here called `data/` and copy the CSV files into it.
+* `run-many.swift`: Parallel Swift script to perform parameter sweep concurrently, similar to `run-many.py`.  Example usage: `swift-t -n PROCS run-many.swift`.  
 
 ## Software
 
@@ -46,4 +42,4 @@ See file headers for additional notes.
 ## Caveats
 
 * You must clone this on `/lustre` if you want to run on the compute nodes
-* If you get a Python stack dump, there is something wrong with your Python configuration.  Email the output Wozniak.
+* If you get a Python stack dump, there is something wrong with your Python configuration.  Email the output to Wozniak.
