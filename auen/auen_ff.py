@@ -18,10 +18,9 @@ NE    = 600      # encoded dim
 F_MAX = 33.3
 DR    = 0.2
 
+def run_one(N1, NE=600, output="stdout", auen_home="."):
 
-def run_one(N1, NE=600, output="stdout"):
-
-    print("run_one: N1=%0.0f NE=%0.0f" % (N1,NE))
+    print('run_one: N1=%0.0f NE=%0.0f' % (N1,NE))
 
     input_vector = Input(shape=(P,))
     x = Dense(N1, activation='sigmoid')(input_vector)
@@ -42,10 +41,10 @@ def run_one(N1, NE=600, output="stdout"):
     encoder = Model(input_vector, encoded)
     decoder = Model(encoded_input, ae.layers[-1](ae.layers[-2](encoded_input)))
 
-    train = (pd.read_csv('data/breast.train.csv').values).astype('float32')
+    train = (pd.read_csv(auen_home+'/data/breast.train.csv').values).astype('float32')
     x_train = train[:, 0:P] / F_MAX
 
-    test = (pd.read_csv('data/breast.test.csv').values).astype('float32')
+    test = (pd.read_csv(auen_home+'/data/breast.test.csv').values).astype('float32')
     x_test = test[:, 0:P] / F_MAX
 
     ae.compile(optimizer='rmsprop', loss='mean_squared_error')
