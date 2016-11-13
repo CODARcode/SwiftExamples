@@ -20,7 +20,7 @@ See file headers for additional notes.
 ## Software
 
 * To run Swift/T on the login node, use `/soft/swift-t/login/2016-11/stc/bin/swift-t ...`
-** Always run this under `nice`.
+ * Always run this under `nice`.
 
 * To run Swift/T on the compute node, use `/lustre/beagle2/wozniak/Public/sfw/swift-t/py2Lr/stc/bin/swift-t -m cray ...`
-** This installation is hard-wired to use our reservation
+ * This installation is hard-wired to use our reservation
