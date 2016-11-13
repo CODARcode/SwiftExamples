@@ -14,6 +14,7 @@ This demo runs a parameter sweep over AUEN/Theano, with parameter _NE_=100,500,1
 ```
 $ git clone https://github.com/jmjwozniak/codar.git
 $ cd auen
+$ export PROJECT=<some valid Beagle allocation>
 $ ./run-swift.sh
 ```
 
