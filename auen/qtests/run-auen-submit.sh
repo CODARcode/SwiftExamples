@@ -11,7 +11,7 @@ echo PWD $PWD
 # PYTHON=/usr/bin/python
 PYTHON=/lustre/beagle2/lpBuild/CANDLE/python/Python-2.7.12-inst/bin/python
 
-export LD_LIBRARY_PATH=/lustre/beagle2/lpBuild/CANDLE/python/Python-2.7.12-inst/lib
+export LD_LIBRARY_PATH=/lustre/beagle2/lpBuild/CANDLE/python/Python-2.7.12-inst/lib:/opt/gcc/4.9.2/snos/lib64
 
 # Override HOME to use the Keras rc file in /lustre
 export HOME=/lustre/beagle2/$USER
