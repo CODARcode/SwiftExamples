@@ -7,6 +7,9 @@ This demo runs a parameter sweep over AUEN/Theano, with parameter _NE_=100,500,1
 
 *Quick start:* To run on the Beagle compute nodes, type:
 
+```
+./run-swift.sh
+```
 
 ## File list
 
@@ -17,7 +20,7 @@ See file headers for additional notes.
 * `run-many.py`: Initial Python sequential parameter sweep over `run_one()`
 * `run-auen.sh`: Shell wrapper for `run-auen.py`, setting system paths, etc.  Forwards command line to `run-auen.py`.  Example usage: `./run-auen.sh 2500 600 stdout`
 * `run-auen.py`: Python main program to accept command line arguments for `auen_ff.py:run_one()`.
-* `run-swift.sh`: Shell wrapper to launch a Swift-based parallel job
+* `run-swift.sh`: Shell wrapper to launch a Swift-based parallel job.  The details about how this calls Swift are:
  * `swift-t`: The Swift/T workflow tool
  * `-m cray`: Launch a Cray APRUN job
  * `-n $PROCS`: Run _PROCS_-1 AUENs at a time (one process for Swift)
