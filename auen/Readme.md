@@ -8,7 +8,8 @@ This demo runs a parameter sweep over AUEN/Theano, with parameter _NE_=100,500,1
 *Quick start:* To run on the Beagle compute nodes,
 
 1. Configure Keras (see below)
-2. Type:
+2. Get the bulk data (see below)
+3. Type:
 
 ```
 $ git clone https://github.com/jmjwozniak/codar.git
@@ -32,6 +33,10 @@ Create file `/lustre/beagle2/$USER/.keras/keras.json` with contents:
 
 (Normally `keras.json` would be in `$HOME`, but this needs to be in `/lustre`.  Our scripts will reset `$HOME` to this directory so this works.)
 
+## Bulk data
+
+* `data/` is the bulk data directory.  Bulk data files are not in GitHub.  A copy of Fangfang's data is on Beagle at `~wozniak/Public/data/auen1`.  Create a directory here called `data/` and copy the CSV files into it.
+
 ## File list
 
 See file headers for additional notes.
@@ -52,7 +57,6 @@ See file headers for additional notes.
 ### Supporting files
 
 * `auen_ff.py`: Original application file from Fangfang, but modified to be a library.  The new key function is `run_one()`.  This function takes about 13 minutes on Beagle with Theano.
-* `data/`: Bulk data directory.  Bulk data files are not in GitHub.  A copy of Fangfang's data is on Beagle at `~wozniak/Public/data/auen1`.  Create a directory here called `data/` and copy the CSV files into it.
 * `run-many.swift`: Parallel Swift script to perform parameter sweep concurrently, similar to `run-many.py`.  Example usage: `swift-t -n PROCS run-many.swift`.  
 
 ## Software
