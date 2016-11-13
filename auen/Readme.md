@@ -1,17 +1,36 @@
 
 # AUEN Workflow
 
-## Initial goal: Basic parameter sweep over AUEN
+## Initial goal: Basic parameter sweep over AUEN on Beagle
 
 This demo runs a parameter sweep over AUEN/Theano, with parameter _NE_=100,500,1000,1500,2000,2500,3000
 
-*Quick start:* To run on the Beagle compute nodes, type:
+*Quick start:* To run on the Beagle compute nodes,
+
+1. Configure Keras (see below)
+2. Type:
 
 ```
 $ git clone https://github.com/jmjwozniak/codar.git
 $ cd auen
 $ ./run-swift.sh
 ```
+
+## Configuring Keras
+
+Keras will try to use TensorFlow by default.  This does not work yet on Beagle, so we create a configuration file to switch it to Theano.  
+
+Create file `/lustre/beagle2/$USER/.keras/keras.json` with contents:
+```
+{
+    "image_dim_ordering": "tf", 
+    "epsilon": 1e-07, 
+    "floatx": "float32", 
+    "backend": "theano"
+}
+```
+
+(Normally `keras.json` would be in `$HOME`, but this needs to be in `/lustre`.  Our scripts will reset `$HOME` to this directory so this works.)
 
 ## File list
 
