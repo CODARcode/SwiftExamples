@@ -27,7 +27,7 @@ See file headers for additional notes.
 
 ### Supporting files
 
-* `auen_ff.py`: Original application file from Fangfang, but modified to be a library.  The new key function is `run_one()`.
+* `auen_ff.py`: Original application file from Fangfang, but modified to be a library.  The new key function is `run_one()`.  This function takes about 13 minutes on Beagle with Theano.
 * `data/`: Bulk data directory.  Bulk data files are not in GitHub.  A copy of Fangfang's data is on Beagle at `~wozniak/Public/data/auen1`.  Create a directory here called `data/` and copy the CSV files into it.
 * `run-many.swift`: Parallel Swift script to perform parameter sweep concurrently, similar to `run-many.py`.  Example usage: `swift-t -n PROCS run-many.swift`.  
 
@@ -43,3 +43,7 @@ See file headers for additional notes.
 
 * You must clone this on `/lustre` if you want to run on the compute nodes
 * If you get a Python stack dump, there is something wrong with your Python configuration.  Email the output to Wozniak.
+
+## Further reading
+
+* [The Swift/T Guide](http://swift-lang.github.io/swift-t/guide.html)
