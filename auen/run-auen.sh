@@ -5,8 +5,9 @@ set -eu
 # Shell wrapper for AUEN to set up PATH, PYTHONPATH, LD_LIBRARY_PATH, etc.
 
 echo RUN-AUEN $*
-
 echo PWD $PWD
+
+AUEN_HOME=$4
 
 # PYTHON=/usr/bin/python
 PYTHON=/lustre/beagle2/lpBuild/CANDLE/python/Python-2.7.12-inst/bin/python
@@ -19,4 +20,4 @@ export HOME=/lustre/beagle2/$USER
 
 export LD_LIBRARY_PATH=/opt/gcc/4.9.2/snos/lib64:/lustre/beagle2/lpBuild/CANDLE/python/Python-2.7.12-inst/lib
 
-$PYTHON /lustre/beagle2/wozniak/proj/codar/auen/run-auen.py $*
+$PYTHON $AUEN_HOME/run-auen.py $*
