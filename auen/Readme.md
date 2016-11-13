@@ -1,6 +1,24 @@
 
 # AUEN Workflow
 
+## Initial goal: Basic parameter sweep over AUEN
+
+This demo runs a parameter sweep over AUEN/Theano, with parameter _NE_=`[`100,500,1000,1500,2000,2500,3000`]`
+
+*Quick start:* To run on the Beagle compute nodes, type:
+
+```
+swift-t -m cray -n 3 run-many.swift --auen_home=$PWD
+```
+
+Meaning:
+
+* `swift-t`: The Swift/T workflow tool
+* `-m cray`: Launch a Cray APRUN job
+* `-n 3`: Run 2 AUENs at a time (one process for Swift)
+* `run-many.swift`: The Swift parameter sweep (see below)
+* `--auen_home=$PWD`: Set a home location so 
+
 ## File list
 
 See file headers for additional notes.
@@ -15,7 +33,7 @@ See file headers for additional notes.
 ### Supporting files
 
 * `auen_ff.py`: Original application file from Fangfang, but modified to be a library.  The new key function is `run_one()`.
-* `data/`: Bulk data directory.  Bulk data files are not in GitHub.
+* `data/`: Bulk data directory.  Bulk data files are not in GitHub.  A copy of Fangfang's data is on Beagle at `~wozniak/Public/data/auen1`.  Create a directory here called `data/` and copy the CSV files into it.  
 
 ## Software
 
@@ -24,3 +42,8 @@ See file headers for additional notes.
 
 * To run Swift/T on the compute node, use `/lustre/beagle2/wozniak/Public/sfw/swift-t/py2Lr/stc/bin/swift-t -m cray ...`
  * This installation is hard-wired to use our reservation
+
+## Caveats
+
+* You must clone this on `/lustre` if you want to run on the compute nodes
+* If you get a Python stack dump, there is something wrong with your Python configuration.  Email the output Wozniak.
