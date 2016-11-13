@@ -2,7 +2,7 @@
 // RUN-MANY
 
 // Run with:
-// $ swift-t run-many.swift
+// $ swift-t run-many.swift --auen_home=$PWD
 
 import sys;
 
