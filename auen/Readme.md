@@ -8,6 +8,8 @@ This demo runs a parameter sweep over AUEN/Theano, with parameter _NE_=100,500,1
 *Quick start:* To run on the Beagle compute nodes, type:
 
 ```
+git clone https://github.com/jmjwozniak/codar.git
+cd auen
 ./run-swift.sh
 ```
 
