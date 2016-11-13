@@ -75,6 +75,14 @@ See file headers for additional notes.
 * You must clone this on `/lustre` if you want to run on the compute nodes
 * If you get a Python stack dump, there is something wrong with your Python configuration.  Email the output to Wozniak.
 
+## Next steps
+
+* Extend the workflow by modifying `run-many.swift` to sweep over more parameters, etc.
+* Apply a basic search over the AUEN parameter space with DEAP
+ * Wozniak will post an example for this, as well as a simpler "pure math" DEAP search, once we have DEAP installed for Python on Beagle
+* Investigate other search patterns of interest to the team beyond DEAP
+ * Our framework (EMEWS) is designed to make it easy to do this
+
 ## Further reading
 
 * [The Swift/T Guide](http://swift-lang.github.io/swift-t/guide.html)
