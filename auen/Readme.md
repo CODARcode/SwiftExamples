@@ -36,7 +36,7 @@ Create file `/lustre/beagle2/$USER/.keras/keras.json` with contents:
 
 ## Bulk data
 
-* `data/` is the bulk data directory.  Bulk data files are not in GitHub.  A copy of Fangfang's data is on Beagle at `~wozniak/Public/data/auen1`.  Create a directory here called `data/` and copy the CSV files into it.
+`./data/` is the bulk data directory.  Bulk data files are not in GitHub.  A copy of Fangfang's data is on Beagle at `~wozniak/Public/data/auen1`.  Create a directory here called `data/` and copy the CSV files into it.
 
 ## File list
 
