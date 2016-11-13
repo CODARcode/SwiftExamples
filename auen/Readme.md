@@ -22,7 +22,7 @@ $ ./run-swift.sh
 
 Keras will try to use TensorFlow by default.  This does not work yet on Beagle, so we create a configuration file to switch it to Theano.  
 
-Create file `/lustre/beagle2/$USER/.keras/keras.json` with contents:
+Create (or edit) file `/lustre/beagle2/$USER/.keras/keras.json` to contain:
 ```
 {
     "image_dim_ordering": "tf", 
@@ -36,7 +36,9 @@ Create file `/lustre/beagle2/$USER/.keras/keras.json` with contents:
 
 ## Bulk data
 
-`./data/` is the bulk data directory expected by the scripts.  Bulk data files are not in GitHub.  A copy of Fangfang's data is on Beagle at `~wozniak/Public/data/auen1`.  Create a directory here called `data/` and copy the CSV files into it.
+* `./data/` is the bulk data directory used by the scripts.  Bulk data files are not in GitHub.
+* A copy of Fangfang's data is on Beagle at `~wozniak/Public/data/auen1`.
+* The directory called `data/` is in Git, simply copy the CSV files into it.
 
 ## File list
 
