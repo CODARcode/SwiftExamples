@@ -72,7 +72,8 @@ See file headers for additional notes.
 
 ## Caveats
 
-* You must clone this on `/lustre` if you want to run on the compute nodes
+* You must clone this on `/lustre` if you want to run on the compute nodes.
+* If your job is queued for more than 5 seconds, and you have a reservation, there may be something wrong with your allocation.  Run `qstat -f` on the job and look for error messages or paste that to Wozniak.
 * If you get a Python stack dump, there is something wrong with your Python configuration.  Email the output to Wozniak.
 
 ## Next steps
