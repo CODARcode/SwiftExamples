@@ -68,7 +68,7 @@ See file headers for additional notes.
  * Always run this under `nice`.
 
 * To run Swift/T on the compute node, use `/lustre/beagle2/wozniak/Public/sfw/swift-t/py2Lr/stc/bin/swift-t -m cray ...`
- * This installation is hard-wired to use our reservation
+* We set the reservation in `run-swift.sh`
 
 ## Caveats
 
