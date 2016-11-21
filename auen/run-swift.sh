@@ -7,6 +7,9 @@ then
   exit 1
 fi
 
+# Canonicalize PWD
+cd $( /bin/pwd )
+
 PATH=/lustre/beagle2/wozniak/Public/sfw/swift-t/py2Lr/stc/bin:$PATH
 
 export LD_LIBRARY_PATH=
