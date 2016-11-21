@@ -18,6 +18,8 @@ LD_LIBRARY_PATH+=/lustre/beagle2/lpBuild/CANDLE/python/Python-2.7.12-inst/lib
 
 export TURBINE_OUTPUT_ROOT=$PWD
 export TURBINE_OUTPUT_FORMAT=out-%Q
+export TURBINE_DIRECTIVE='#PBS -l advres=brettin.3672'
+
 export WALLTIME=01:00:00
 PROCS=2
 swift-t -m cray -n $PROCS run-many.swift --auen_home=$PWD
