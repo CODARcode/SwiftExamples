@@ -1,4 +1,4 @@
-# ian-code
+# Simple parameter sweep with Swift, using command line programs
 **run** runs **run-sweep.swift**, which runs a parameter sweep. It calls command-line programs as follows:
 - determineParameters.{sh,py}: Read **settings.json** for sweep parameters, and return as a string for use by Swift program
 - evaluateOne.{sh,py}: Runs a single experiment. (Calls random()).
