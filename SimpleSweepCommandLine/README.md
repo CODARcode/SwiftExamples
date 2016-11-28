@@ -1,0 +1,16 @@
+# ian-code
+**run** runs **run-sweep.swift**, which runs a parameter sweep. It calls command-line programs as follows:
+- determineParameters.{sh,py}: Read **settings.json** for sweep parameters, and return as a string for use by Swift program
+- evaluateOne.{sh,py}: Runs a single experiment. (Calls random()).
+- computeStats.{sh,py}: Ingests data from all of the experiments and computes simple stats.
+
+Usage: run -settings=$PWD/settings.json
+
+Notes:
+- Set up to run on Beagle at UChicago
+- **settings.json**: sweep parameters. Parameters must be labeled "1", "2", "3", "4", ... (dumb I know)
+- The code needs to be fxed to deal with PWD correctly: currently hardcoded for foster
+
+To do:
+- Call a real machine learning code from the **evaluateOne** function in sweep.py, and a real evaluation function from **computeStats** (also in sweep.py)
+- Work out what to do when outputs from the many ML code evaluations are too large to combine on one node
