@@ -9,7 +9,6 @@ Usage: run -settings=$PWD/settings.json
 Notes:
 - Set up to run on Beagle at UChicago
 - **settings.json**: sweep parameters. Parameters must be labeled "1", "2", "3", "4", ... (dumb I know)
-- The code needs to be fxed to deal with PWD correctly: currently hardcoded for foster
 
 To do:
 - Call a real machine learning code from the **evaluateOne** function in sweep.py, and a real evaluation function from **computeStats** (also in sweep.py)

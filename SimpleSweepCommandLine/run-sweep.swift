@@ -7,19 +7,19 @@ import sys;
 app (file f)
 determineParameters(string settingsFilename)
 {
-  "../determineParameters.sh" settingsFilename f;
+  (getenv("APP_HOME")+"/determineParameters.sh") settingsFilename f;
 }
 
 app (file f)
 evaluateOne(string params)
 {
-  "../evaluateOne.sh" params f;
+  (getenv("APP_HOME")+"/evaluateOne.sh") params f;
 }
 
 app ()
 computeStats(string resultsFile)
 {
-  "../computeStats.sh" resultsFile;
+  (getenv("APP_HOME")+"/computeStats.sh") resultsFile;
 }
 
 

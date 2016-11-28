@@ -1,2 +1,2 @@
 #!/bin/bash
-python /lustre/beagle2/foster/codar/ian-code2/computeStats.py $1
+python $APP_HOME/computeStats.py $1
