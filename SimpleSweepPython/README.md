@@ -1,4 +1,4 @@
-# ian-code
+# Simple parameter sweep: Swift/Python
 Simple Swift-Python code to run parameter sweeps via calls to Python functions
 
 Usage: run-swift.sh -settings=$PWD/settings.json
