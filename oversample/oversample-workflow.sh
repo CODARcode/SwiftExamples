@@ -10,5 +10,5 @@ export WALLTIME=01:00:00
 
 export PATH=/lustre/beagle2/wozniak/Public/sfw/swift-t/py2Lr/stc/bin:$PATH
 
-swift-t -m cray -t i:./pre.sh oversample.swift
+which swift-t
 
