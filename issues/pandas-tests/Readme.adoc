@@ -8,6 +8,18 @@ Use ./mk-readme.sh
 
 :toc:
 
+== Settings
+
+Key settings are in +settings.sh+:
+----
+# SETTINGS
+# This file is read by the Makefile and shell scripts
+GCC492=/opt/gcc/4.9.2
+PYTHON_HOME=/lustre/beagle2/lpBuild/CANDLE/python/Python-2.7.12-inst
+TCL_HOME=/soft/swift-t/deps/tcl-8.6.5
+TCLSH=${TCL_HOME}/bin/tclsh
+----
+
 == Python executable
 
 === test-py-pandas.sh
@@ -47,6 +59,11 @@ Uses:
 
 FAILS
 
+Login:
+----
+make pkgIndex.tcl
+./test-pandas-tcl.sh
+----
 
 
 ////

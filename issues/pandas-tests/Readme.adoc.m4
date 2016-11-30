@@ -8,6 +8,12 @@ Use ./mk-readme.sh
 
 :toc:
 
+== Settings
+
+Key settings are in +settings.sh+:
+----
+m4_include(`settings.cfg')----
+
 == Python executable
 
 === test-py-pandas.sh
@@ -44,6 +50,11 @@ Uses:
 
 FAILS
 
+Login:
+----
+make pkgIndex.tcl
+./test-pandas-tcl.sh
+----
 
 
 ////

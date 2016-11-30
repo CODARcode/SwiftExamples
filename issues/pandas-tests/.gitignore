@@ -2,6 +2,7 @@ prog-*
 lib-*
 PYTHON.o*
 *.pbs
+*_wrap.c
 *.o
 *.so
 *.x
