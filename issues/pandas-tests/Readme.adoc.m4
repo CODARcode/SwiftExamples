@@ -8,7 +8,7 @@ Use ./mk-readme.sh
 
 == Python executable
 
-=== test-py-pandas.sh
+=== test-py-pandas.sh [green]#WORKS#
 
 Login:
 ----

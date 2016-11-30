@@ -1,14 +1,14 @@
 
 ////
 This file should be filtered with m4 first (for includes)
-m4 -P Readme.adoc.m4 > Readme.adoc
+Use ./mk-readme.sh
 ////
 
 = Swift/T &amp; Python interface &amp; pandas
 
 == Python executable
 
-=== test-py-pandas.sh
+=== test-py-pandas.sh [green]#WORKS#
 
 Login:
 ----
