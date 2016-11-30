@@ -13,4 +13,4 @@ Login:
 * Uses +try-pandas.py+
 
 
-[[include:try-pandas.py]]
+[[include:https://github.com/CODARcode/SwiftExamples/blob/master/issues/pandas-tests/try-pandas.py]]
