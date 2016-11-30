@@ -11,7 +11,9 @@ PyObject* local_dict = NULL;
 
 static int python_error()
 {
-  printf("Error in Python API!\n");
+  printf("Error in Python API!\n\n");
+  PyErr_Print();
+
   exit(EXIT_FAILURE);
 }
 
@@ -24,6 +26,7 @@ static void execute(char* code)
 void
 try_python_pandas()
 {
+  // Initialize
   Py_InitializeEx(1);
   PyObject* main_module  = PyImport_AddModule("__main__");
   if (main_module == NULL) python_error();

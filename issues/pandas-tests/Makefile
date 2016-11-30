@@ -1,8 +1,6 @@
 
 include settings.cfg
 
-TCLSH = $(TCL_HOME)/bin/tclsh
-
 CC = $(GCC492)/bin/gcc
 CFLAGS = -fPIC -I $(PYTHON_HOME)/include -I $(TCL_HOME)/include
 LDFLAGS = \
@@ -27,7 +25,7 @@ libtclpandaspy.so: pandaspy_wrap.o libpandaspy.so
 pkgIndex.tcl: make-package.tcl libtclpandaspy.so
 	$(TCLSH) $(<) > $(@)
 
-# libtclpandas.so: pandas-lib.o
+.DELETE_ON_ERROR:
 
 clean:
 	rm -fv *.x *.so *.o *_wrap.c
