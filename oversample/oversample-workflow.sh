@@ -12,3 +12,5 @@ export PATH=/lustre/beagle2/wozniak/Public/sfw/swift-t/py2Lr/stc/bin:$PATH
 
 which swift-t
 
+PROCS=${PROCS:-2}
+swift-t -m cray -n 2 -t i:./pre.sh oversample.swift
