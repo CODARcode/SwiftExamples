@@ -3,6 +3,7 @@ lib-*
 PYTHON.o*
 *.pbs
 *.o
+*.so
 *.x
 turbine-directory.txt
 pkgIndex.tcl
