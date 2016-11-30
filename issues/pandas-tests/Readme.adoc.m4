@@ -1,7 +1,7 @@
 
 ////
 This file should be filtered with m4 first (for includes)
-m4 -P Readme.adoc.m4 > Readme.adoc
+Use ./mk-readme.sh
 ////
 
 = Swift/T &amp; Python interface &amp; pandas
@@ -18,10 +18,7 @@ Login:
 * Uses +try-pandas.py+
 +
 ----
-print("python: trying pandas...")
-import pandas
-print("python: pandas: success")
-----
+m4_include(`try-pandas.py')----
 
 ////
 Local Variables:
