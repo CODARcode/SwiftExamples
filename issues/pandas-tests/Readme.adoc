@@ -12,5 +12,5 @@ Login:
 
 * Uses +try-pandas.py+
 
-[listing]
-include::try-pandas.py[]
+
+[[include:try-pandas.py]]
