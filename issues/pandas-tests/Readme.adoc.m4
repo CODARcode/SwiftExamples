@@ -6,9 +6,13 @@ Use ./mk-readme.sh
 
 = Swift/T &amp; Python interface &amp; pandas
 
+:toc:
+
 == Python executable
 
-=== test-py-pandas.sh [green]#WORKS#
+=== test-py-pandas.sh
+
+[green]#WORKS#
 
 Login:
 ----
@@ -19,6 +23,8 @@ Login:
 +
 ----
 m4_include(`try-pandas.py')----
+
+== C-Python interface
 
 ////
 Local Variables:
