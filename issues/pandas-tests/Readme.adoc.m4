@@ -26,6 +26,26 @@ m4_include(`try-pandas.py')----
 
 == C-Python interface
 
+[green]#WORKS#
+
+Login:
+----
+make pandas-lib.x
+./test-pandas-lib-x.sh
+----
+
+Uses:
+
++pandas-lib.c+:: A simple library that exposes function +try_python_pandas()+ that uses the +PyRun_String()+ to +import pandas+.
+
++pandas-lib-main.c+:: Simply calls +try_python_pandas()+ .
+
+== Tcl-C-Python interface
+
+FAILS
+
+
+
 ////
 Local Variables:
 mode: doc;
