@@ -1,0 +1,8 @@
+prog-*
+lib-*
+PYTHON.o*
+*.pbs
+*.o
+*.x
+turbine-directory.txt
+pkgIndex.tcl
