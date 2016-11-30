@@ -1,0 +1,16 @@
+
+= Swift/T &amp; Python interface &amp; pandas
+
+== Python executable
+
+=== test-py-pandas.sh
+
+Login:
+----
+./test-py-pandas.sh
+----
+
+* Uses +try-pandas.py+
+
+[listing]
+include::try-pandas.py[]
