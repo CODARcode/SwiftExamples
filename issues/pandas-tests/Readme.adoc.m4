@@ -58,8 +58,10 @@ make pkgIndex.tcl
 
 Compute:
 ----
+export PROJECT=...
 make pkgIndex.tcl
-
+./qsub-pandas-tcl.sh
+----
 
 == Swift-Python interface
 
@@ -69,9 +71,12 @@ This shows how to successfully import +pandas+ and +keras+ via Swift's Python li
 
 Compute:
 ----
+export PROJECT=...
 make pkgIndex.tcl
 ./qsub-swift-pandas-lib.sh
 ----
+
++qsub-swift-pandas-lib.sh+ is a good, complete example of doing this.
 
 Uses:
 +pandas-lib.swift+
