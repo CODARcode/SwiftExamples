@@ -7,6 +7,8 @@ LDFLAGS = \
 	-L $(PWD) -l pandaspy \
 	-L $(PYTHON_HOME)/lib -l python2.7
 
+swift-package: pkgIndex.tcl
+
 libpandaspy.so: pandas-lib.o
 	$(CC) -shared -fPIC -o $(@) $(<)
 
@@ -24,6 +26,7 @@ libtclpandaspy.so: pandaspy_wrap.o libpandaspy.so
 
 pkgIndex.tcl: make-package.tcl libtclpandaspy.so
 	$(TCLSH) $(<) > $(@)
+	sed -i "s/list load/list load -global/" $(@)
 
 .DELETE_ON_ERROR:
 

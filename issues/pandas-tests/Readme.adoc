@@ -16,8 +16,14 @@ Key settings are in +settings.sh+:
 # This file is read by the Makefile and shell scripts
 GCC492=/opt/gcc/4.9.2
 PYTHON_HOME=/lustre/beagle2/lpBuild/CANDLE/python/Python-2.7.12-inst
-TCL_HOME=/soft/swift-t/deps/tcl-8.6.5
-TCLSH=${TCL_HOME}/bin/tclsh
+# TCL_HOME=/soft/swift-t/deps/tcl-8.6.5
+# TCL_HOME=${HOME}/sfw/tcl-8.6.5-global
+# TCL_HOME=${FS}/sfw/tcl-8.6.5-global
+TCL_HOME=/soft/swift-t/deps/tcl-8.6.5-gcc-4.9.2-global
+TCLSH=${TCL_HOME}/bin/tclsh8.6
+# SWIFT=/lustre/beagle2/wozniak/Public/sfw/swift-t/py2Lr/stc/bin/swift-t
+# SWIFT=/lustre/beagle2/wozniak/sfw/swift-t-pyL/stc/bin/swift-t
+SWIFT=/soft/swift-t/compute/CANDLE-2016-12/stc/bin/swift-t
 ----
 
 == Python executable
@@ -57,7 +63,7 @@ Uses:
 
 == Tcl-C-Python interface
 
-FAILS
+Works- needed to make Tcl use 
 
 Login:
 ----
@@ -65,6 +71,48 @@ make pkgIndex.tcl
 ./test-pandas-tcl.sh
 ----
 
+Compute:
+----
+make pkgIndex.tcl
+
+
+== Swift-Python interface
+
+WORKS
+
+This shows how to successfully import +pandas+ and +keras+ via Swift's Python library interface.
+
+Compute:
+----
+make pkgIndex.tcl
+./qsub-swift-pandas-lib.sh
+----
+
+Uses:
++pandas-lib.swift+
+----
+
+// PANDAS-LIB.SWIFT
+
+import io;
+import python;
+
+i = python(----
+import os
+print("PYTHON") 
+print(os.getenv("LD_LIBRARY_PATH"))
+print("importing pandas")           
+import pandas
+print("pandas: OK")
+print("importing keras")            
+import keras
+print("keras: OK")
+----,
+"repr(0)"
+);
+printf("i: %s", i);
+
+----
 
 ////
 Local Variables:

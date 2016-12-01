@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e
 
 chmod u+w Readme.adoc
 m4 -P Readme.adoc.m4 > Readme.adoc

@@ -48,7 +48,7 @@ Uses:
 
 == Tcl-C-Python interface
 
-FAILS
+Works- needed to make Tcl use 
 
 Login:
 ----
@@ -56,6 +56,28 @@ make pkgIndex.tcl
 ./test-pandas-tcl.sh
 ----
 
+Compute:
+----
+make pkgIndex.tcl
+
+
+== Swift-Python interface
+
+WORKS
+
+This shows how to successfully import +pandas+ and +keras+ via Swift's Python library interface.
+
+Compute:
+----
+make pkgIndex.tcl
+./qsub-swift-pandas-lib.sh
+----
+
+Uses:
++pandas-lib.swift+
+----
+m4_include(`pandas-lib.swift')
+----
 
 ////
 Local Variables:
