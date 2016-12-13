@@ -3,6 +3,8 @@ set -eu
 
 # Canonicalize PWD
 THIS=$( cd $( dirname $0 ) ; /bin/pwd )
+cd $THIS
+echo PWD=$PWD
 
 PROJECT=${PROJECT:-}
 if [[ ${PROJECT} == "" ]]
