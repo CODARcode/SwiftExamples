@@ -2,11 +2,11 @@
 set -eu
 
 # RUN-AUEN
-# Shell wrapper for AUEN to set up PATH, PYTHONPATH, etc.
+# PBS submit script for AUEN: sets up PATH, PYTHONPATH, etc.
+# Invoke submit-run.sh to launch this
 
-echo PWD $PWD
 cd $PBS_O_WORKDIR
-echo PWD $PWD
+echo PWD=$PWD
 
 # PYTHON=/usr/bin/python
 PYTHON=/lustre/beagle2/lpBuild/CANDLE/python/Python-2.7.12-inst/bin/python
@@ -15,7 +15,7 @@ export LD_LIBRARY_PATH=/lustre/beagle2/lpBuild/CANDLE/python/Python-2.7.12-inst/
 
 # Override HOME to use the Keras rc file in /lustre
 export HOME=/lustre/beagle2/$USER
-echo HOME $HOME
+echo HOME=$HOME
 
 # printenv
 
