@@ -1,4 +1,14 @@
-#!/bin/sh
+#!/bin/bash
+set -eu
 
-THIS=$( dirname $0 )
-qsub -j oe -l advres=brettin.3663 -A CI-MCB000175 $THIS/run-auen-submit.sh
+# Canonicalize PWD
+THIS=$( cd $( dirname $0 ) ; /bin/pwd )
+
+PROJECT=${PROJECT:-}
+if [[ ${PROJECT} == "" ]]
+then
+  echo "Error: You must set environment variable PROJECT"
+  exit 1
+fi
+
+qsub -j oe -l advres=wozniak.3701 -A $PROJECT $THIS/run-auen-submit.sh
