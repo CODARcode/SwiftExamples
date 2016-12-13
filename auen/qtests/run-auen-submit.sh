@@ -19,7 +19,8 @@ echo HOME=$HOME
 
 # printenv
 
-source /opt/modules/3.2.6.7/init/bash
+. /opt/modules/default/init/bash
+# source /opt/modules/3.2.6.7/init/bash
 module load PrgEnv-gnu
 
 aprun -n 1 $PYTHON /lustre/beagle2/wozniak/proj/codar/auen/run-auen.py 500 500 stdout $PWD
