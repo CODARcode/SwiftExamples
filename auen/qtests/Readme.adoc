@@ -1,0 +1,10 @@
+
+= auen/qtests: AUEN Queue Tests
+
+These tests run a simple use of Fangfang's AUEN test case with plain Python (no Swift) on the compute nodes.
+
+== Entry points
+
+submit-run.sh:: Submits the test via qsub, the PBS script is run-auen-submit.sh
+
+run-auen-submit.sh:: The submitted PBS script.  Calls ../run-auen.py
