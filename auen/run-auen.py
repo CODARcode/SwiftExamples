@@ -5,7 +5,10 @@
 # $ export PYTHONPATH=$PWD
 # $ python run-auen.py <N1> <NE> <OUTPUT>
 
-import sys
+import os, sys
+
+print("python: LD_LIBRARY_PATH=%s" % os.getenv("LD_LIBRARY_PATH"))
+print("python: PYTHONPATH=%s" % os.getenv("PYTHONPATH"))
 
 import auen_ff
 
@@ -13,6 +16,7 @@ if len(sys.argv) == 1:
     print("Requires three arguments: <NI> <NE> <OUTPUT>")
     sys.exit(1)
 
+# Default:    
 auen_home = "."
     
 N1 = float(sys.argv[1])
