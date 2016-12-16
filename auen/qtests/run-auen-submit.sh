@@ -11,6 +11,7 @@ cd $PBS_O_WORKDIR
 echo PWD=$PWD
 
 PYTHON_HOME=/lustre/beagle2/lpBuild/CANDLE/python/Python-2.7.12-inst
+PYTHON_STDLIB=$PYTHON_HOME/lib/python2.7
 
 # PYTHON=/usr/bin/python
 PYTHON=$PYTHON_HOME/bin/python
@@ -18,7 +19,7 @@ PYTHON=$PYTHON_HOME/bin/python
 TF=$PYTHON_HOME/lib/python2.7/site-packages/tensorflow/python
 
 export LD_LIBRARY_PATH=$PYTHON_HOME/lib:/opt/gcc/4.9.2/snos/lib64:$TF
-export PYTHONPATH=$TF
+export PYTHONPATH=$PYTHON_STDLIB:$TF
 
 # Override HOME to use the Keras rc file in /lustre
 export HOME=/lustre/beagle2/$USER
