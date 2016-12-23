@@ -1,3 +1,7 @@
+
+# AUEN_FF.PY
+# This is the original Keras use case provided by Fangfang
+
 # Comment from Fangfang:
 # -- The hyper parameters could initially include the variables in caps such as N1, NE, DR and BATCH.
 # -- The metric to optimize would be the validation loss (the lower the better).
