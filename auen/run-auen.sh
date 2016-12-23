@@ -8,6 +8,7 @@ set -x
 
 echo RUN-AUEN $*
 echo PWD $PWD
+echo DATE $( date "+%m/%d/%Y %I:%M%p" )
 
 AUEN_HOME=$4
 
