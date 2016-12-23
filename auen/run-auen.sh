@@ -4,6 +4,8 @@ set -eu
 # RUN-AUEN
 # Shell wrapper for AUEN to set up PATH, PYTHONPATH, LD_LIBRARY_PATH, etc.
 
+set -x
+
 echo RUN-AUEN $*
 echo PWD $PWD
 
