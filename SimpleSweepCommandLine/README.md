@@ -11,5 +11,5 @@ Notes:
 - **settings.json**: sweep parameters. Parameters must be labeled "1", "2", "3", "4", ... (dumb I know)
 
 To do:
-- Call a real machine learning code from the **evaluateOne** function in sweep.py, and a real evaluation function from **computeStats** (also in sweep.py)
+- Call a real machine learning code from evaluateOne.py, and a real analysis function from computeStats.py
 - Work out what to do when outputs from the many ML code evaluations are too large to combine on one node
