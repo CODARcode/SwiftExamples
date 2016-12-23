@@ -1,8 +1,8 @@
 
-// RUN-MANY
+// SWEEP-CMD.SWIFT
 
 // Run with:
-// $ swift-t run-many.swift --auen_home=$PWD
+// $ swift-t sweep-cmd.swift --auen_home=$PWD
 
 import sys;
 
