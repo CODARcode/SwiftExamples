@@ -35,7 +35,7 @@ parameters = split(parametersString, ":");
 // Run experiments in parallel, passing each a different parameter set
 foreach param in parameters
 {
-    file resultFile<"result-%s.txt"%(repr(param))> = evaluateOne(param);
+    file resultFile<"result-%s.txt"%param> = evaluateOne(param);
     results[param] = string2float(read(resultFile));
 }
 
