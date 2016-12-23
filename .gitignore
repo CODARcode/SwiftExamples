@@ -1,1 +1,4 @@
 *.tic
+*.pyc
+out-*/
+turbine-directory.txt

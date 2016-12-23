@@ -22,4 +22,4 @@ export TURBINE_DIRECTIVE='#PBS -l advres=wozniak.3701'
 
 export WALLTIME=01:00:00
 PROCS=2
-swift-t -m cray -n $PROCS run-many.swift --auen_home=$PWD
+swift-t -m cray -n $PROCS sweep.swift --auen_home=$PWD
