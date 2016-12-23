@@ -16,9 +16,9 @@ export LD_LIBRARY_PATH=
 LD_LIBRARY_PATH+=/opt/gcc/4.9.2/snos/lib64:
 LD_LIBRARY_PATH+=/lustre/beagle2/lpBuild/CANDLE/python/Python-2.7.12-inst/lib
 
+export TURBINE_DIRECTIVE='#PBS -l advres=wozniak.3701'
 export TURBINE_OUTPUT_ROOT=$PWD
 export TURBINE_OUTPUT_FORMAT=out-%Q
-export TURBINE_DIRECTIVE='#PBS -l advres=wozniak.3701'
 
 export WALLTIME=01:00:00
 PROCS=2
