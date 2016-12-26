@@ -10,7 +10,7 @@ import sys;
 
 printf("SWEEP-LIB.SWIFT");
 
-// string auen_home = argv("auen_home");
+string auen_home = argv("auen_home");
 // string auen = auen_home+"/run-auen.sh";
 
 // auen_ff(int N1, int NE, string auen_home)
@@ -26,4 +26,10 @@ printf("SWEEP-LIB.SWIFT");
 //   auen_ff(N1, NE, auen_home);
 // }
 
-printf(python("import auen_ff", "repr(0)"));
+printf("Python result: %s", 
+python(
+"import auen_ff",
+"""
+auen_ff.run_one(100, 600, "%s")
+"""
+% auen_home));

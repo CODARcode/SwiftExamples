@@ -23,9 +23,13 @@ export TURBINE_DIRECTIVE='#PBS -l advres=wozniak.3701'
 export TURBINE_OUTPUT_ROOT=$PWD
 export TURBINE_OUTPUT_FORMAT=out-%Q
 
+# Override HOME to use the Keras rc file in /lustre
+HOME=/lustre/beagle2/$USER
+
 export WALLTIME=01:00:00
 PROCS=2
-swift-t -m cray -n $PROCS \
+swift-t -p -m cray -n $PROCS \
         -e PYTHONPATH \
         -e LD_LIBRARY_PATH=$LD_LIBRARY_PATH \
+        -e HOME=$HOME \
         sweep-lib.swift --auen_home=$PWD

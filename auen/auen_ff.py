@@ -65,7 +65,7 @@ def run_one(N1, NE=600, auen_home="."):
                     verbose=0, # To avoid printing status during run
                     validation_data=[x_test, x_test])
     
-    return result.history['val_loss'][0]
+    return str(result.history['val_loss'][0])
 
 def run_one_write(N1, NE=600, auen_home=".", output="stdout"):
     val_loss = run_one(N1, NE, auen_home)

@@ -48,7 +48,7 @@ Uses:
 
 == Tcl-C-Python interface
 
-Works- needed to make Tcl use 
+Works- needed to make Tcl use -global
 
 Login:
 ----
