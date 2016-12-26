@@ -25,4 +25,4 @@ output = sys.argv[3]
 if len(sys.argv) == 5:
     auen_home = sys.argv[4]
     
-auen_ff.run_one(N1, NE, output, auen_home)
+auen_ff.run_one_write(N1, NE, auen_home, output)

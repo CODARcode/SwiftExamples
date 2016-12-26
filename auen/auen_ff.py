@@ -6,13 +6,6 @@
 # -- The hyper parameters could initially include the variables in caps such as N1, NE, DR and BATCH.
 # -- The metric to optimize would be the validation loss (the lower the better).
 
-import pandas as pd
-import numpy as np
-
-from keras.layers import Input, Dense, Dropout
-from keras.models import Model
-
-
 EPOCH = 2
 BATCH = 50
 
@@ -22,10 +15,23 @@ NE    = 600      # encoded dim
 F_MAX = 33.3
 DR    = 0.2
 
-def run_one(N1, NE=600, output="stdout", auen_home="."):
+from datetime import datetime
 
-    print('run_one: N1=%0.0f NE=%0.0f' % (N1,NE))
+def timestamp():
+    return datetime.now().strftime("%Y/%M/%D %H:%m:%S")
 
+def msg(s):
+    print(timestamp() + " " + s)
+
+def run_one(N1, NE=600, auen_home="."):
+
+    msg('run_one: N1=%0.0f NE=%0.0f' % (N1,NE))
+
+    import pandas as pd
+    import numpy as np
+    from keras.layers import Input, Dense, Dropout
+    from keras.models import Model
+    
     input_vector = Input(shape=(P,))
     x = Dense(N1, activation='sigmoid')(input_vector)
     # x = Dropout(DR)(x)
@@ -58,14 +64,20 @@ def run_one(N1, NE=600, output="stdout", auen_home="."):
                     nb_epoch=EPOCH,
                     verbose=0, # To avoid printing status during run
                     validation_data=[x_test, x_test])
+    
+    return result.history['val_loss'][0]
 
+def run_one_write(N1, NE=600, auen_home=".", output="stdout"):
+    val_loss = run_one(N1, NE, auen_home)
     if output == "stdout":
-        print('Results for N1=%s: %s'%(N1,result.history['val_loss']))
+        print('Results for N1=%s: %s'%(N1,val_loss))
+        print('')
     else:
         with open(output, "w") as fp:
-            # fp.write(str(result.history['val_loss']))
+            fp.write(str(val_loss) + "\n")
             fp.write("0\n") # Dummy value
-    
+
+
 # Code used to print histogram of result
 #encoded_image = encoder.predict(x_test)
 #decoded_image = decoder.predict(encoded_image)
