@@ -2,7 +2,7 @@
 = AUEN Workflow
 :toc:
 
-== Initial goal: Basic parameter sweep over AUEN on Beagle
+== Basic parameter sweep over AUEN on Beagle
 
 This demo runs a parameter sweep over AUEN/Theano, with parameter _NE_=100,500,1000,1500,2000,2500,3000
 
@@ -16,7 +16,7 @@ This demo runs a parameter sweep over AUEN/Theano, with parameter _NE_=100,500,1
 $ git clone https://github.com/jmjwozniak/codar.git
 $ cd auen
 $ export PROJECT=<some valid Beagle allocation>
-$ ./run-swift.sh
+$ ./run-cmd
 ----
 
 == Configuring Keras
@@ -131,7 +131,6 @@ DEAP settings (see +algorithm.py+)
 ** Always run this under +nice+.
 
 * To run Swift/T on the compute node, use +/lustre/beagle2/wozniak/Public/sfw/swift-t/py2Lr/stc/bin/swift-t -m cray ...+
-* We set the reservation in +run-swift.sh+
 
 == Caveats
 
@@ -144,9 +143,9 @@ Run +qstat -f+ on the job and look for error messages or paste that to Wozniak.
 
 * Extend the workflow by modifying +run-many.swift+ to sweep over more parameters, etc.
 * Apply a basic search over the AUEN parameter space with DEAP
- * Wozniak will post an example for this, as well as a simpler "pure math" DEAP search, once we have DEAP installed for Python on Beagle
+** Wozniak will post an example for this, as well as a simpler "pure math" DEAP search, once we have DEAP installed for Python on Beagle
 * Investigate other search patterns of interest to the team beyond DEAP
- * Our framework (EMEWS) is designed to make it easy to do this
+** Our framework (EMEWS) is designed to make it easy to do this
 
 == Caveats
 
