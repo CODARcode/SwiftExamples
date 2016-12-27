@@ -68,7 +68,7 @@ Shell wrapper to launch a Swift-based parallel job with +sweep-cmd.swift+.  The 
 +
 
 +run-lib+::
-Shell wrapper to launch a Swift-based parallel job with +sweep-cmd.swift+.
+Shell wrapper to launch a Swift-based parallel job with +sweep-lib.swift+.
 
 +run-deap+::
 Shell wrapper to launch a Swift-based parallel job with +workflow.swift+ that uses DEAP (see below).
