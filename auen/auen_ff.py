@@ -18,10 +18,12 @@ DR    = 0.2
 from datetime import datetime
 
 def timestamp():
-    return datetime.now().strftime("%Y/%M/%D %H:%m:%S")
+    return datetime.now().strftime("%Y/%m/%d %H:%M:%S")
 
 def msg(s):
     print(timestamp() + " " + s)
+    import sys
+    sys.stdout.flush()
 
 def run_one(N1, NE=600, auen_home="."):
 
@@ -31,6 +33,8 @@ def run_one(N1, NE=600, auen_home="."):
     import numpy as np
     from keras.layers import Input, Dense, Dropout
     from keras.models import Model
+
+    msg('imported')
     
     input_vector = Input(shape=(P,))
     x = Dense(N1, activation='sigmoid')(input_vector)
@@ -57,13 +61,19 @@ def run_one(N1, NE=600, auen_home="."):
     test = (pd.read_csv(auen_home+'/data/breast.test.csv').values).astype('float32')
     x_test = test[:, 0:P] / F_MAX
 
+    msg('data ok')
+    
     ae.compile(optimizer='rmsprop', loss='mean_squared_error')
 
+    msg('compiled')
+    
     result = ae.fit(x_train, x_train,
                     batch_size=BATCH,
                     nb_epoch=EPOCH,
                     verbose=0, # To avoid printing status during run
                     validation_data=[x_test, x_test])
+
+    msg('fit ok')
     
     return str(result.history['val_loss'][0])
 
