@@ -1,0 +1,48 @@
+#!/bin/bash
+set -eu
+
+# RUN DEAP
+
+if [[ ${PROJECT:-} == "" ]]
+then
+  echo "Error: You need to set environment variable PROJECT."
+  exit 1
+fi
+
+# Canonicalize PWD
+cd $( /bin/pwd )
+
+PATH=/lustre/beagle2/wozniak/Public/sfw/swift-t/py2Lr/stc/bin:$PATH
+
+export LD_LIBRARY_PATH=
+LD_LIBRARY_PATH+=/opt/gcc/4.9.2/snos/lib64:
+LD_LIBRARY_PATH+=/lustre/beagle2/lpBuild/CANDLE/python/Python-2.7.12-inst/lib
+
+EQP=$PWD/ext/EQ-Py
+export PYTHONPATH=$PWD:$EQP
+
+export TURBINE_DIRECTIVE='#PBS -l advres=wozniak.3701'
+export TURBINE_OUTPUT_ROOT=$PWD
+export TURBINE_OUTPUT_FORMAT=out-%Q
+
+# Override HOME to use the Keras rc file in /lustre
+HOME=/lustre/beagle2/$USER
+
+export WALLTIME=01:00:00
+PROCS=${PROCS:-2}
+
+if (( PROCS < 3 ))
+then
+  echo "Set PROCS >= 3."
+  exit 1
+fi
+
+export TURBINE_RESIDENT_WORK_WORKERS=1
+export RESIDENT_WORK_RANKS=$(( PROCS - 2 ))
+
+swift-t -p -m cray -n $PROCS \
+        -I $EQP -r $EQP \
+        -e PYTHONPATH \
+        -e LD_LIBRARY_PATH=$LD_LIBRARY_PATH \
+        -e HOME=$HOME \
+        workflow.swift --auen_home=$PWD --settings=$PWD/settings.json

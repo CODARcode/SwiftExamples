@@ -17,7 +17,7 @@ DR    = 0.2
 
 from datetime import datetime
 
-id = "UNKNOWN"
+id = "0"
 
 def timestamp():
     return datetime.now().strftime("%Y/%m/%d %H:%M:%S")
@@ -31,7 +31,7 @@ def msg(s):
 def run_one(N1, NE=600, auen_home="."):
 
     global id
-    id = "(%0.0f,%0.0f)" % (N1,NE)
+    id = id + "(%0.0f,%0.0f)" % (N1,NE)
     msg('run_one: N1=%0.0f NE=%0.0f' % (N1,NE))
 
     import pandas as pd
