@@ -138,6 +138,8 @@ DEAP settings (see +algorithm.py+)
 * If your job is queued for more than 5 seconds, and you have a reservation, there may be something wrong with your allocation or reservation.
 Run +qstat -f+ on the job and look for error messages or paste that to Wozniak.
 * If you get a Python stack dump, there is something wrong with your Python configuration.  Email the output to Wozniak.
+* Be sure to use +python_persist()+ when calling Keras
+* Be sure to use +load -global+ in +pkgIndex.tcl+
 
 == Next steps
 
@@ -146,11 +148,6 @@ Run +qstat -f+ on the job and look for error messages or paste that to Wozniak.
 ** Wozniak posted an example for this, as well as a simpler "pure math" DEAP search, once we have DEAP installed for Python on Beagle
 * Investigate other search patterns of interest to the team beyond DEAP
 ** Our framework (EMEWS) is designed to make it easy to do this
-
-== Caveats
-
-* Be sure to use +python_persist()+ when calling Keras
-* Be sure to use +load -global+ in +pkgIndex.tcl+
 
 == Further reading
 
