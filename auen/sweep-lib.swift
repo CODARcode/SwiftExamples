@@ -29,7 +29,7 @@ string auen_home = argv("auen_home");
 foreach N1 in [100,500,1000,1500,2000,2500,3000] 
 {
 printf("Python result: %s", 
-python(
+python_persist(
 "import auen_ff",
 """
 auen_ff.run_one(%i, 600, "%s")

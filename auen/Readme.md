@@ -84,6 +84,11 @@ See file headers for additional notes.
 * Investigate other search patterns of interest to the team beyond DEAP
  * Our framework (EMEWS) is designed to make it easy to do this
 
+## Caveats
+
+* Be sure to use python_persist() when calling Keras
+* Be sure to use load -global in pkgIndex.tcl
+
 ## Further reading
 
 * [The Swift/T Guide](http://swift-lang.github.io/swift-t/guide.html)
