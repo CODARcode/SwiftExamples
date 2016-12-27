@@ -141,9 +141,9 @@ Run +qstat -f+ on the job and look for error messages or paste that to Wozniak.
 
 == Next steps
 
-* Extend the workflow by modifying +run-many.swift+ to sweep over more parameters, etc.
-* Apply a basic search over the AUEN parameter space with DEAP
-** Wozniak will post an example for this, as well as a simpler "pure math" DEAP search, once we have DEAP installed for Python on Beagle
+* Extend the workflow by modifying +sweep-cmd.swift+ to sweep over more parameters, etc. (DONE)
+* Apply a basic search over the AUEN parameter space with DEAP (DONE)
+** Wozniak posted an example for this, as well as a simpler "pure math" DEAP search, once we have DEAP installed for Python on Beagle
 * Investigate other search patterns of interest to the team beyond DEAP
 ** Our framework (EMEWS) is designed to make it easy to do this
 
