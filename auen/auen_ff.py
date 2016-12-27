@@ -17,16 +17,21 @@ DR    = 0.2
 
 from datetime import datetime
 
+id = "UNKNOWN"
+
 def timestamp():
     return datetime.now().strftime("%Y/%m/%d %H:%M:%S")
 
 def msg(s):
-    print(timestamp() + " " + s)
+    global id
+    print(id + " " + timestamp() + " " + s)
     import sys
     sys.stdout.flush()
 
 def run_one(N1, NE=600, auen_home="."):
 
+    global id
+    id = "(%0.0f,%0.0f)" % (N1,NE)
     msg('run_one: N1=%0.0f NE=%0.0f' % (N1,NE))
 
     import pandas as pd
