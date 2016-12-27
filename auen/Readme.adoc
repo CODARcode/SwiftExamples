@@ -59,11 +59,29 @@ See file headers for additional notes.
 ** +--auen_home=$PWD+: Set a home location so AUEN can find its data
 ** The output will go into the reported +TURBINE_OUTPUT+ directory, a numbered  directory under +$PWD+
 * +run-lib+: Shell wrapper to launch a Swift-based parallel job with +sweep-cmd.swift+.
+* +run-deap+: Shell wrapper to launch a Swift-based parallel job with +workflow.swift+.
+
 
 === Supporting files
 
 * +auen_ff.py+: Original application file from Fangfang, but modified to be a library.  The new key function is +run_one()+.  This function takes about 13 minutes on Beagle with Theano.
-* +sweep-cmd.swift+: Parallel Swift script to perform parameter sweep concurrently, similar to +run-many.py+.  Example usage: +swift-t -n PROCS run-many.swift+.  
+* +sweep-cmd.swift+: Parallel Swift script to perform parameter sweep concurrently, similar to +run-many.py+.  Example usage: +swift-t -n PROCS sweep-cmd.swift+.  Calls AUEN via the shell command +python+.
+* +sweep-lib.swift+: Parallel Swift script to perform parameter sweep concurrently, similar to +run-many.py+.  Example usage: +swift-t -n PROCS sweep-lib.swift+.  Calls AUEN via the Swift/Python interface (an in-memory call through C to an embedded Python interpreter).
+* +workflow.swift+: Parallel Swift script to perform DEAP-controlled optimization.  Calls AUEN via the Swift/Python interface.
+
+== DEAP integration
+
+DEAP is supported via the http://www.mcs.anl.gov/~emews/tutorial[EMEWS framework].
+
+The workflow provides parameters _N1_, _NE_ minimizing the result value +result.history['val_loss'][0]+ with the DEAP +eaSimple+ evolutionary algorithm (EA)
+
+=== DEAP files
+
+algorithm.py::
+Implements the EA with the DEAP API
+
+
+
 
 == Cray PBS scheduler settings
 
