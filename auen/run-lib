@@ -27,7 +27,7 @@ export TURBINE_OUTPUT_FORMAT=out-%Q
 HOME=/lustre/beagle2/$USER
 
 export WALLTIME=01:00:00
-PROCS=2
+PROCS=${PROCS:-2}
 swift-t -p -m cray -n $PROCS \
         -e PYTHONPATH \
         -e LD_LIBRARY_PATH=$LD_LIBRARY_PATH \
