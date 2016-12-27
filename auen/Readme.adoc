@@ -1,6 +1,8 @@
 
 = AUEN Workflow
 
+:toc:
+
 == Initial goal: Basic parameter sweep over AUEN on Beagle
 
 This demo runs a parameter sweep over AUEN/Theano, with parameter _NE_=100,500,1000,1500,2000,2500,3000
@@ -49,23 +51,32 @@ See file headers for additional notes.
 * +run-many.py+: Initial Python sequential parameter sweep over +run_one()+
 * +run-auen.sh+: Shell wrapper for +run-auen.py+, setting system paths, etc.  Forwards command line to +run-auen.py+.  Example usage: +./run-auen.sh 2500 600 stdout+
 * +run-auen.py+: Python main program to accept command line arguments for +auen_ff.py:run_one()+.
-* +run-swift.sh+: Shell wrapper to launch a Swift-based parallel job, limited to 1 hour.  The details about how this calls Swift are:
- * +swift-t+: The Swift/T workflow tool
- * +-m cray+: Launch a Cray APRUN job
- * +-n $PROCS+: Run _PROCS_-1 AUENs at a time (one process for Swift)
- * +run-many.swift+: The Swift parameter sweep (see below)
- * +--auen_home=$PWD+: Set a home location so AUEN can find its data
- * The output will go into the reported +TURBINE_OUTPUT+ directory, a numbered  directory under +$PWD+
+* +run-cmd+: Shell wrapper to launch a Swift-based parallel job with +sweep-cmd.swift+.  The details about how this calls Swift are:
+** +swift-t+: The Swift/T workflow tool
+** +-m cray+: Launch a Cray APRUN job
+** +-n $PROCS+: Run _PROCS_-1 AUENs at a time (one process for Swift)
+** +sweep-cmd.swift+: The Swift parameter sweep (see below)
+** +--auen_home=$PWD+: Set a home location so AUEN can find its data
+** The output will go into the reported +TURBINE_OUTPUT+ directory, a numbered  directory under +$PWD+
+* +run-lib+: Shell wrapper to launch a Swift-based parallel job with +sweep-cmd.swift+.
 
 === Supporting files
 
 * +auen_ff.py+: Original application file from Fangfang, but modified to be a library.  The new key function is +run_one()+.  This function takes about 13 minutes on Beagle with Theano.
-* +run-many.swift+: Parallel Swift script to perform parameter sweep concurrently, similar to +run-many.py+.  Example usage: +swift-t -n PROCS run-many.swift+.  
+* +sweep-cmd.swift+: Parallel Swift script to perform parameter sweep concurrently, similar to +run-many.py+.  Example usage: +swift-t -n PROCS run-many.swift+.  
+
+== Cray PBS scheduler settings
+
+* The reservation is hard-coded in the shell scripts
+* You must set environment variable +PROJECT+ for your allocation
+* The default time is 1 hour (01:00:00), you can override this by setting environment variable +WALLTIME+ with HH:MM:SS
+* The default number of processes is minimal (2 or 3), set this with environment variable +PROCS+.
+* The default number of processes per node is minimal (1), set this with environment variable +PPN+.
 
 == Software
 
 * To run Swift/T on the login node, use +/soft/swift-t/login/2016-11/stc/bin/swift-t ...+
- * Always run this under +nice+.
+** Always run this under +nice+.
 
 * To run Swift/T on the compute node, use +/lustre/beagle2/wozniak/Public/sfw/swift-t/py2Lr/stc/bin/swift-t -m cray ...+
 * We set the reservation in +run-swift.sh+
