@@ -26,10 +26,13 @@ string auen_home = argv("auen_home");
 //   auen_ff(N1, NE, auen_home);
 // }
 
+foreach N1 in [100,500,1000,1500,2000,2500,3000] 
+{
 printf("Python result: %s", 
 python(
 "import auen_ff",
 """
-auen_ff.run_one(100, 600, "%s")
+auen_ff.run_one(%i, 600, "%s")
 """
-% auen_home));
+% (N1, auen_home)));
+}
