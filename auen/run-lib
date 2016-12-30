@@ -19,7 +19,7 @@ LD_LIBRARY_PATH+=/lustre/beagle2/lpBuild/CANDLE/python/Python-2.7.12-inst/lib
 # PYTHON_STDLIB=$PYTHON_HOME/lib/python2.7
 export PYTHONPATH=$PWD # :$PYTHON_STDLIB
 
-export TURBINE_DIRECTIVE='#PBS -l advres=wozniak.3701'
+# export TURBINE_DIRECTIVE='#PBS -l advres=wozniak.3701'
 export TURBINE_OUTPUT_ROOT=$PWD
 export TURBINE_OUTPUT_FORMAT=out-%Q
 
