@@ -10,6 +10,13 @@ fi
 # Canonicalize PWD
 cd $( /bin/pwd )
 
+NE=""
+if [[ ${#} > 0 ]]
+then
+  NE="--NE=$1"
+  OUTPUT=$( printf "NE-%04i" $1 )
+fi
+
 PATH=/lustre/beagle2/wozniak/Public/sfw/swift-t/py2Lr/stc/bin:$PATH
 
 export LD_LIBRARY_PATH=
@@ -21,7 +28,7 @@ export PYTHONPATH=$PWD # :$PYTHON_STDLIB
 
 # export TURBINE_DIRECTIVE='#PBS -l advres=wozniak.3701'
 export TURBINE_OUTPUT_ROOT=$PWD
-export TURBINE_OUTPUT_FORMAT=out-%Q
+export TURBINE_OUTPUT_FORMAT=${OUTPUT:-out-%Q}
 
 # Override HOME to use the Keras rc file in /lustre
 HOME=/lustre/beagle2/$USER
@@ -32,4 +39,4 @@ swift-t -p -m cray -n $PROCS \
         -e PYTHONPATH \
         -e LD_LIBRARY_PATH=$LD_LIBRARY_PATH \
         -e HOME=$HOME \
-        sweep-lib.swift --auen_home=$PWD $*
+        sweep-lib.swift --auen_home=$PWD $NE
