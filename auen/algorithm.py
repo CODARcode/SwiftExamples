@@ -18,7 +18,11 @@ from deap import algorithms
 import eqpy
 
 # Global variable names we are going to set from the JSON settings file
-global_settings = ["num_iter", "num_pop", "sigma", "mate_pb", "mutate_pb"]
+global_settings = ["num_iter", "num_pop", "sigma",
+                   "mate_pb", "mutate_pb",
+                   "N1_min", "N1_max",
+                   "NE_min", "NE_max"
+]
 
 def i2s(i):
     """ Convert individual to string """
@@ -29,10 +33,11 @@ def obj_func(x):
     assert(False)
 
 def make_random_params():
-    def random_param():
-        return round(random.random() * 2900 + 100)
-    x1 = random_param()
-    x2 = random_param()
+    def random_param(b0, b1):
+        return round(random.random() * (b1-b0) + b0)
+    global N1_min, N1_max, NE_min, NE_max
+    x1 = random_param(N1_min, N1_max)
+    x2 = random_param(NE_min, NE_max)
     print("new individual: (%0.0f,%0.0f)" % (x1,x2))
     return [x1, x2]
 
@@ -63,11 +68,25 @@ def mutate_Gaussian_float(x):
 # Returns a tuple of one individual
 def custom_mutate(individual, indpb):
     old_individual = i2s(individual)
-    for i,m in enumerate(individual):
-        t = mutate_Gaussian_float(individual[i])
-        if t < 100:  t = 100
-        if t > 3000: t = 3000
-        individual[i] = round(t)
+    # for i,m in enumerate(individual):
+    #     t = mutate_Gaussian_float(individual[i])
+    #     if t < 100:  t = 100
+    #     if t > 3000: t = 3000
+
+    global N1_min, N1_max, NE_min, NE_max
+
+    # N1
+    t = mutate_Gaussian_float(individual[0])
+    if t < N1_min: t = N1_min
+    if t > N1_max: t = N1_max
+    individual[0] = round(t)
+
+    # NE
+    t = mutate_Gaussian_float(individual[1])
+    if t < NE_min: t = NE_min
+    if t > NE_max: t = NE_max
+    individual[1] = round(t)
+
     print("mutate: %s to: %s" % (old_individual, i2s(individual)))
     return individual,
 
@@ -132,16 +151,19 @@ def load_settings(settings_filename):
     try:
         with open(settings_filename) as fp:
             settings = json.load(fp)
+        for s in global_settings:
+            globals()[s] = settings[s]
+            # print("setting: %s=%s" % (s, settings[s]))
+        random.seed(settings["seed"])
     except IOError as e:
         print("Could not open: '%s'" % settings_filename)
         print("PWD is: '%s'" % os.getcwd())
         sys.exit(1)
-    try:
-        for s in global_settings:
-            globals()[s] = settings[s]
-        random.seed(settings["seed"])
     except KeyError as e:
-        print("Settings file (%s) does not contain key: %s" % (settings_filename, str(e)))
+        print("Settings file (%s) does not contain key: %s" %
+              (settings_filename, str(e)))
         sys.exit(1)
-    print "num_iter: ", num_iter
+
+    print("num_iter: %i" % num_iter)
     print("Settings loaded.")
+    sys.stdout.flush()
