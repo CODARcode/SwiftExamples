@@ -1,4 +1,5 @@
 data/
-out-???
+out-???/
+NE-*/
 *.pyc
 run-auen-submit.sh.o*
