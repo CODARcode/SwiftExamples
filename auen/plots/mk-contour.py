@@ -3,6 +3,7 @@
 
 # The goal of this is to scan all the logs from the Swift runs
 # and generate files for plotting by Octave's contour()
+# See mk_contour.m for file format rationale
 
 import sys
 
@@ -10,8 +11,11 @@ if len(sys.argv) < 2:
     print "usage: mk-contour inputs..."
     exit(1)
 
+# Unique sets of coordinates:
 NEs = {}
 N1s = {}
+
+# Data values for val_loss and timing
 V   = {}
 T   = {}
 
