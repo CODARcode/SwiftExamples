@@ -31,6 +31,7 @@ for file_input in sys.argv[1:]:
             NEs[NE] = 0
             N1s[N1] = 0
             V[(N1,NE)] = val_loss
+            T[(N1,NE)] = time
 
 NE_list = NEs.keys()
 NE_list.sort()
