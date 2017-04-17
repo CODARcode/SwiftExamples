@@ -10,6 +10,6 @@ then
   exit 1
 fi
 
-export PYTHONPATH=$PWD
+export PYTHONPATH=$PYTHONPATH:$PWD
 
 swift-t run-sweep.swift $*
