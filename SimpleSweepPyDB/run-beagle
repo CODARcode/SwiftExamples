@@ -1,8 +1,9 @@
 #!/bin/bash
-#
-# Usage: run-swift.sh -settings=$PWD/settings.json
-#
 set -eu
+
+# RUN BEAGLE
+
+# Usage: run-beagle -settings=$PWD/settings.json
 
 # Ian's project:
 # export PROJECT=CI-CCR000040
@@ -26,4 +27,4 @@ export TURBINE_OUTPUT_ROOT=$PWD
 export TURBINE_OUTPUT_FORMAT=out-%Q
 export WALLTIME=01:00:00
 PROCS=2
-swift-t -m cray -n $PROCS run-sweep.swift $*
+swift-t -m cray -n $PROCS workflow.swift $*
