@@ -1,19 +1,62 @@
+
 """
+SWEEP.PY
+
 Python implementation of a simple cross product parameter sweep, for use with
-run-sweep.swift. Functions are imported and called by swift.
+workflow.swift. Functions are imported and called by swift.
 """
+
 import sys
 import random
 from collections import defaultdict
 import json, os
 
-import run_insert # From CANDLE Database
+import candle_db
+
+sweep_initialized = False
+sweep_db_enabled = False
+sweep_experiment_id = None
+
+def init():
+    global sweep_initialized
+    global sweep_db_enabled
+    if sweep_initialized: return
+    print os.getenv("DB")
+    if os.getenv("DB") == "1":
+        print "enabled"
+        sweep_db_enabled = True
+    sweep_initialized = True
+
+def setup(experiment_id):
+    global sweep_experiment_id
+    sweep_experiment_id = experiment_id
+    return repr(0)
 
 def evaluateOne(*arg):
     """Run a single experiment with the specified args."""
-    #print "I was called with", len(arg), "arguments:", arg
+    print "evaluateOne: ", arg
+    db_run_insert(arg)
     return random.random()
 
+def db_wf_insert():
+    """ If DB is enabled, store the workflow metadata"""
+    global sweep_db_enabled, sweep_experiment_id
+    if not sweep_db_enabled: return
+    print("inserting workflow metadata (%s)..." % sweep_experiment_id)
+    candle_db.experiment_insert(experiment_id=sweep_experiment_id)
+
+def db_run_insert(arg):
+    """ If DB is enabled, do the DB insertion"""
+    global sweep_db_enabled, sweep_experiment_id
+    if not sweep_db_enabled: return
+
+    params_string = candle_db.params2string(arg[0], arg[1])
+    run_id = "%s:%s"%(sweep_experiment_id,params_string)
+    print "run_id ", run_id
+
+    candle_db.run_insert(run_id=run_id,
+                         parameters=params_string,
+                         experiment_id=sweep_experiment_id)
 
 def loadSettings(settingsFilename):
     """Load JSON settings file that defines parameter search space.
@@ -21,6 +64,7 @@ def loadSettings(settingsFilename):
     The file must have the following format:
         { 'parameters' : {'1' : numList1, '2': numList2, ...} }
     """
+    init()
     print("Reading settings: %s" % settingsFilename)
     try:
         with open(settingsFilename) as fp:
@@ -35,6 +79,9 @@ def loadSettings(settingsFilename):
         print("Settings file (%s) does not contain key: %s"
               % (settingsFilename, str(e)))
         sys.exit(1)
+
+    db_wf_insert()
+
     return params
 
 
@@ -82,11 +129,11 @@ def determineParameters(settingsFilename):
     results = expand(values, 1, len(params), [''])
     result = ':'.join(results)
     return result
-        
+
 
 def extractVals(A):
     """Convert a swift repr of an associative array to a Python dictionary.
-    
+
     The format of swift repr is a flat space delimited list alternating
     between key and value.
     """

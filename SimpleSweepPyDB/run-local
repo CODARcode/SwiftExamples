@@ -2,7 +2,7 @@
 set -eu
 
 # RUN LOCAL
-# Usage: run-swift.sh -settings=$PWD/settings.json
+# Usage: run-local --settings=$PWD/settings.json
 
 if ! which swift-t >& /dev/null
 then
@@ -10,6 +10,6 @@ then
   exit 1
 fi
 
-export PYTHONPATH=$PYTHONPATH:$PWD
+export PYTHONPATH=${PYTHONPATH:-}:$PWD
 
-swift-t run-sweep.swift $*
+swift-t -O0 workflow.swift $*
