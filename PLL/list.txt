@@ -1,0 +1,6 @@
+# This is my list of commands
+
+echo HELLO1
+echo HELLO2
+hostname
+false
