@@ -56,5 +56,5 @@ with open("tm.dat", "w") as fp:
         for N1 in N1_list:
             if (N1,NE) in T: t = T[(N1,NE)]
             else:            t = 0
-            fp.write("%f " % t)
+            fp.write("%0.0f " % t)
         fp.write("\n")
