@@ -5,11 +5,11 @@ set -eu
 # Shell wrapper for AUEN on the compute nodes
 # Sets up PATH, PYTHONPATH, LD_LIBRARY_PATH, etc.
 
-set -x
-
 echo RUN-AUEN $*
 echo PWD $PWD
 echo DATE $( date "+%m/%d/%Y %I:%M%p" )
+
+set -x
 
 AUEN_HOME=$4
 
