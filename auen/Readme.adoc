@@ -21,14 +21,14 @@ $ ./run-cmd
 
 == Configuring Keras
 
-Keras will try to use TensorFlow by default.  This does not work yet on Beagle, so we create a configuration file to switch it to Theano.  
+Keras will try to use TensorFlow by default.  This does not work yet on Beagle, so we create a configuration file to switch it to Theano.
 
 Create (or edit) file +/lustre/beagle2/$USER/.keras/keras.json+ to contain:
 ----
 {
-    "image_dim_ordering": "tf", 
-    "epsilon": 1e-07, 
-    "floatx": "float32", 
+    "image_dim_ordering": "tf",
+    "epsilon": 1e-07,
+    "floatx": "float32",
     "backend": "theano"
 }
 ----
@@ -76,7 +76,7 @@ Shell wrapper to launch a Swift-based parallel job with +workflow.swift+ that us
 === Supporting files
 
 +auen_ff.py+::
-Original application file from Fangfang, but modified to be a library.  The new key function is +run_one()+.  This function takes about 13 minutes on Beagle with Theano.
+Original application file from Fangfang, but modified to be a library.  The new key function is +run_one()+.  This function takes about 13 minutes on Beagle with Theano for small N1.
 
 +sweep-cmd.swift+::
 Parallel Swift script to perform parameter sweep concurrently, similar to +run-many.py+.  Example usage: +swift-t -n PROCS sweep-cmd.swift+.  Calls AUEN via the shell command +python+.
