@@ -1,0 +1,15 @@
+#!/bin/bash
+set -eu
+
+# RUN LOCAL
+# Usage: run-local --settings=$PWD/settings.json
+
+if ! which swift-t >& /dev/null
+then
+  echo "Put swift-t in your PATH!"
+  exit 1
+fi
+
+export PYTHONPATH=${PYTHONPATH:-}:$PWD
+
+swift-t -O0 workflow.swift $*
