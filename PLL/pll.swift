@@ -25,6 +25,22 @@ set <<exit_code>> $b
 """
 ];
 
+(int exit_code) system_cd(string directory, string cmd)
+"turbine" "1.0"
+[
+"""
+set cmd_tokens <<cmd>>
+if [ catch { exec {*}$cmd_tokens > /dev/stdout } e info ] {
+  set L [ dict get $info -errorcode ]
+  set b [ lindex $L 2]
+} else {
+  set b 0
+}
+set <<exit_code>> $b
+"""
+];
+
+
 assert (argc() == 1, "Provide an input file!");
 
 string cmd_list_file = argp(1);
