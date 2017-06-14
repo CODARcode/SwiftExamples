@@ -19,11 +19,19 @@ static char* output_file = NULL;
 static char* slurp(const char* filename);
 static void copy(const char* input, const char* output);
 
+static int mpi_rank = 0;
+
 int
 main(int argc, char* argv[])
 {
-  get_args(argc, argv);
-  copy(input_file, output_file);
+  MPI_Init(0, 0);
+  MPI_Comm_rank(MPI_COMM_WORLD, &mpi_rank);
+  if (mpi_rank == 0)
+  {
+    get_args(argc, argv);
+    copy(input_file, output_file);
+  }
+  MPI_Finalize();
   return EXIT_SUCCESS;
 }
 
@@ -55,7 +63,7 @@ verbose(char* fmt, ...)
 {
   if (verbosity == 0) return;
 
-  printf("py-eval: ");
+  printf("rw: ");
   va_list ap;
   va_start(ap, fmt);
   vprintf(fmt, ap);
@@ -67,7 +75,7 @@ verbose(char* fmt, ...)
 static void
 crash(char* fmt, ...)
 {
-  printf("py-eval: abort: ");
+  printf("rw: abort: ");
   va_list ap;
   va_start(ap, fmt);
   vprintf(fmt, ap);
