@@ -51,10 +51,10 @@ def db_run_insert(arg):
     if not sweep_db_enabled: return
 
     params_string = candle_db.params2string(arg[0], arg[1])
-    run_id = "%s:%s"%(sweep_experiment_id,params_string)
+    run_id = "%s-%s"%(sweep_experiment_id,params_string)
     print "run_id ", run_id
 
-    candle_db.run_insert(run_id=run_id,
+    candle_db.update_run(run_id=run_id,
                          parameters=params_string,
                          experiment_id=sweep_experiment_id)
 
