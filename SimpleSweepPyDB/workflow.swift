@@ -15,9 +15,10 @@ setup()
 {
   script = getenv("SWIFT_T_PROGRAM");
   t = float2int(clock()) %% 1000;
-  workflow_id = "%s-%3i" % (script, t);
+  workflow_id = "%s-%03i" % (script, t);
   printf("workflow_id: %s", workflow_id);
-  v = python_persist("import sweep", "sweep.setup(\"%s\")" % workflow_id);
+  v = python_persist("import sweep",
+                     "sweep.setup(\"%s\")" % workflow_id);
 }
 
 setup() =>
