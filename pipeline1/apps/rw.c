@@ -1,22 +1,24 @@
 
+#include <errno.h>
 #include <stdarg.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/stat.h>
+#include <unistd.h>
 
 #include <mpi.h>
 
 static int verbosity = 0;
 static void verbose(char* fmt, ...);
 static void crash(char* fmt, ...);
+static void crash_perror(char* fmt, ...);
 
 static void get_args(int argc, char** argv);
 static char* input_file = NULL;
 static char* output_file = NULL;
 
-static char* slurp(const char* filename);
 static void copy(const char* input, const char* output);
 
 static int mpi_rank = 0;
@@ -35,9 +37,13 @@ main(int argc, char* argv[])
   return EXIT_SUCCESS;
 }
 
+static void wait_for_file(const char* filename);
+static char* slurp(const char* filename);
+
 static void
 copy(const char* input, const char* output)
 {
+  wait_for_file(input);
   char* data = slurp(input);
   if (data == NULL) crash("could not read: %s", input);
   size_t length = strlen(data)+1;
@@ -47,6 +53,26 @@ copy(const char* input, const char* output)
   if (count != length) crash("could not write: %s", output); 
   fclose(fp);
   free(data);
+}
+
+static void
+wait_for_file(const char* filename)
+{
+  while (true)
+  {
+    struct stat s;
+    verbose("checking for file: %s", filename);
+    int rc = stat(filename, &s);
+    if (rc == 0)
+      break;
+    if (errno == ENOENT)
+    {
+      sleep(1);
+      continue;
+    }
+    else
+      crash_perror("failed waiting for file: %s", filename);
+  }
 }
 
 static void
@@ -72,16 +98,25 @@ verbose(char* fmt, ...)
   fflush(stdout);
 }
 
+static void vcrash(const char* fmt, va_list ap);
+#define VCRASH va_list ap; va_start(ap, fmt); vcrash(fmt, ap);
 static void
 crash(char* fmt, ...)
 {
-  printf("rw: abort: ");
-  va_list ap;
-  va_start(ap, fmt);
+  VCRASH;
+}
+static void
+crash_perror(char* fmt, ...)
+{
+  perror("encountered error");
+  VCRASH;
+}
+static void
+vcrash(const char* fmt, va_list ap)
+{
+  printf("rw: abort:");
   vprintf(fmt, ap);
-  va_end(ap);
   printf("\n");
-
   exit(EXIT_FAILURE);
 }
 
