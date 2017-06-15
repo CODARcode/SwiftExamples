@@ -1,9 +1,6 @@
 
-import assert;
-import io;
 import launch;
 import stats;
-import string;
 
 a_x = "apps/a.x";
 b_x = "apps/b.x";

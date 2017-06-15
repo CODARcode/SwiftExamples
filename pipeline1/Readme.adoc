@@ -22,10 +22,10 @@ The workflow creates a pipeline of programs that duplicate data.
 
 == Overview
 
-The apps (a.x and b.x are the same program) simply copy an input file to an output file, but they are MPI programs.  They will spin-wait until their input is visible in the filesystem.
+The apps (a.x, b.x, c.x are the same program) simply copy an input file to an output file, but they are MPI programs.  They will spin-wait until their input is visible in the filesystem.
 
 In the example https://github.com/CODARcode/SwiftExamples/blob/master/pipeline1/workflow1.swift[workflow1.swift], the task sizes, commands, and arguments are laid out.
 
-You must have a working, very recent Swift/T with the MPIX_Launch module found at: https://bitbucket.org/jmjwozniak/mpix_launch_swift .
+You must have recent Swift/T with the MPIX_Launch module found at: https://bitbucket.org/jmjwozniak/mpix_launch_swift .
 
 You must edit the https://github.com/CODARcode/SwiftExamples/blob/master/pipeline1/run-workflow.sh[run-workflow.sh] convenience script to point to the MPIX_Launch module.
