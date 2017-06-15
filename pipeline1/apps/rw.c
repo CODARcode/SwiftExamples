@@ -10,7 +10,7 @@
 
 #include <mpi.h>
 
-static int verbosity = 0;
+static int verbosity = 1;
 static void verbose(char* fmt, ...);
 static void crash(char* fmt, ...);
 static void crash_perror(char* fmt, ...);
