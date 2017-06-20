@@ -79,7 +79,7 @@ static void
 get_args(int argc, char** argv)
 {
   if (argc != 3)
-    crash("requires 2 arguments -- received %i", argc);
+    crash("requires 2 arguments -- received %i", argc-1);
   input_file  = argv[1];
   output_file = argv[2];
 }
@@ -114,7 +114,7 @@ crash_perror(char* fmt, ...)
 static void
 vcrash(const char* fmt, va_list ap)
 {
-  printf("rw: abort:");
+  printf("rw: abort: ");
   vprintf(fmt, ap);
   printf("\n");
   exit(EXIT_FAILURE);
