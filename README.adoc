@@ -1,0 +1,38 @@
+
+== Simple Swift examples
+
+* *auen*: Description TBD.
+* *oversample*: Description TBD.
+* *SimpleSweepCommandLine*: A Swift "mini-app" that reads in a specification of a parameter sweep and then uses the Swift command line interface to run relevant programs. The skeleton "app" called in the parameter sweep simply returns a random number.
+* *SimpleSweepPython*: Same but invokes programs via the Python interface.
+* *SimpleSweepPyDB*: Same but posts to DB.
+
+== CODAR Swift/T installations
+
+=== Titan
+
+==== Login node
+
+This installation has Python enabled.
+
+Add to +PATH+: +~wozniak/Public/sfw/login/swift-t/stc/bin+
+
+Run with:
+
+----
+$ nice swift-t workflow.swift
+----
+
+==== Compute node
+
+This installation has Python enabled.
+
+Add to +PATH+: +/lustre/atlas/scratch/wozniak/csc242/Public/sfw/titan/swift-t/stc/bin+
+
+Run with:
+
+----
+$ export PROJECT=... QUEUE=debug TITAN=true
+$ export LD_LIBRARY_PATH=/sw/xk6/deeplearning/1.0/sles11.3_gnu4.9.3/lib:/sw/xk6/deeplearning/1.0/sles11.3_gnu4.9.3/cuda/lib64:/opt/gcc/4.9.3/snos/lib64
+$ swift-t -m cray -e LD_LIBRARY_PATH=$LD_LIBRARY_PATH workflow.swift
+----
