@@ -34,5 +34,6 @@ Run with:
 ----
 $ export PROJECT=... QUEUE=debug TITAN=true
 $ export LD_LIBRARY_PATH=/sw/xk6/deeplearning/1.0/sles11.3_gnu4.9.3/lib:/sw/xk6/deeplearning/1.0/sles11.3_gnu4.9.3/cuda/lib64:/opt/gcc/4.9.3/snos/lib64
+$ module load r/3.3.2x
 $ swift-t -m cray -e LD_LIBRARY_PATH=$LD_LIBRARY_PATH workflow.swift
 ----
