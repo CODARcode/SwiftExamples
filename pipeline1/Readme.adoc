@@ -4,14 +4,14 @@
 == Quick start
 
 ----
-$ cd apps
-$ make
+$ cd ../apps
+$ make all
 $ cd ..
 $ touch f1.data
 $ ls *.data
 f1.data
 $ ./run-workflow.sh 10
-mpicmd: mpiexec -n 4 -hosts ... apps/a.x f1.data f2.data 
+mpicmd: mpiexec -n 4 -hosts ... apps/a.x f1.data f2.data
 mpicmd: mpiexec -n 2 -hosts ... apps/b.x f2.data f3.data
 mpicmd: mpiexec -n 3 -hosts ... apps/c.x f3.data f4.data
 $ ls *.data
