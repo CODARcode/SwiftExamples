@@ -1,15 +1,45 @@
+
 Location for examples for https://github.com/CODARcode/cheetah/issues/22[Cheetah Issue #22].
 
-== Example A
+== Set up
+
+Edit run.sh to set the MPIX_Launch location.
+
+== Example a.swift
 
 Runs the simple MPI program ../apps/noop.x with 1, 2, 4, 8 processes.
-
-Edit a.sh to set the MPIX_Launch location.
 
 Run with:
 
 ----
-./a.sh 9
+$ ./run.sh a 9
+swift: launching: ../apps/noop.x on 1 processes
+swift: launching: ../apps/noop.x on 2 processes
+swift: launching: ../apps/noop.x on 4 processes
+swift: launching: ../apps/noop.x on 8 processes
+...
 ----
 
 where 9 is the number of processes.  The number 9 is chosen because this is the size of the largest task (8) + 1 process for Swift.
+
+== Example b.swift
+
+Runs the simple MPI program ../apps/noop.x 4 times in two rounds, each noop.x has 2 processes.  Each noop.x reports start/stop timestamps so you can easily tell what was running at each point in time.  Each noop.x execution is labeled with a unique number 0-3.
+
+Run with:
+
+----
+$ ./run.sh b 5
+swift: launching: ../apps/noop.x (0) on 2 processes
+swift: launching: ../apps/noop.x (1) on 2 processes
+swift: launching: ../apps/noop.x (2) on 2 processes
+swift: launching: ../apps/noop.x (3) on 2 processes
+noop 0: start: 1500397975
+noop 3: start: 1500397975
+noop 0: stop:  1500397976
+noop 3: stop:  1500397976
+noop 2: start: 1500397976
+noop 1: start: 1500397976
+noop 2: stop:  1500397977
+noop 1: stop:  1500397977
+----
