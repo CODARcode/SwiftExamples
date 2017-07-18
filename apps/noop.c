@@ -23,6 +23,8 @@ static char* const EMPTY_STRING = "";
 static char* label;
 static int   verbosity = 0;
 
+static void help(void);
+
 static void verbose(char* fmt, ...);
 
 static void scan_opts(int argc, char** argv);
@@ -53,14 +55,28 @@ main(int argc, char* argv[])
 }
 
 static void
+help(void)
+{
+  printf("usage: noop.x [-h] [-d DELAY] [-l LABEL] [-v]*\n");
+  printf("  -h       : Print this help message.\n");
+  printf("  -d DELAY : Delay in seconds.  Reports start/stop time.\n");
+  printf("  -l LABEL : Use the given label on output messages.\n");
+  printf("  -v       : Increase verbosity.  May be given twice.\n");
+}
+
+static void
 scan_opts(int argc, char** argv)
 {
   int c;
-  while ((c = getopt (argc, argv, "d:l:v")) != -1)
+  while ((c = getopt (argc, argv, "hd:l:v")) != -1)
     switch (c)
     {
       case 'd':
         sscanf(optarg, "%i", &delay);
+        break;
+      case 'h':
+        help();
+        exit(EXIT_SUCCESS);
         break;
       case 'l':
         asprintf(&label, " %s", optarg);
