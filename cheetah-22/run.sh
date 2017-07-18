@@ -1,16 +1,23 @@
 #!/bin/sh
 set -eu
 
-# A
-# Runs the demo a.swift
+# RUN
+# Runs the demos a.swift, b.swift
 
-if [ ${#} != 1 ]
+usage()
+{
+  echo "usage: WORKFLOW PROCS"
+  echo "       where WORKFLOW is a or b"
+}
+
+if [ ${#} != 2 ]
 then
-  echo "Requires PROCS!"
+  usage
   exit 1
 fi
 
-PROCS=$1
+WORKFLOW=$1
+PROCS=$2
 
 # USER: Set this to the correct location:
 LAUNCH=$HOME/proj/mpix_launch_swift/src
@@ -19,7 +26,7 @@ MACHINE=${MACHINE:-}
 
 THIS=$( dirname $0 )
 
-stc -p -u -I $LAUNCH -r $LAUNCH a.swift
-turbine -n $PROCS $MACHINE a.tic
+stc -p -u -I $LAUNCH -r $LAUNCH $WORKFLOW.swift
+turbine -n $PROCS $MACHINE $WORKFLOW.tic
 
 echo "SUCCESS!"
