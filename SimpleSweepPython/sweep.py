@@ -89,7 +89,7 @@ def extractVals(A):
     The format of swift repr is a flat space delimited list alternating
     between key and value.
     """
-    B = defaultdict(dict)
+    B = dict()
     A1 = A.split()
     for n, val in zip(A1[0::2], A1[1::2]):
         B[n] = float(val)
@@ -103,9 +103,7 @@ def computeStats(swiftArrayAsString):
     swiftArrayAsString -- swift repr of a swift associative array
     """
     A = extractVals(swiftArrayAsString)
-    vals = []
-    for a in A:
-        vals += [A[a]]
+    vals = A.values()
     print('%d values, with min=%f, max=%f, avg=%f\n'
           % (len(vals), min(vals), max(vals), sum(vals)/float(len(vals))))
     return 'ok'
