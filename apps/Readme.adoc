@@ -1,0 +1,19 @@
+
+Sample MPI applications for sample workflows.
+
+== Build
+
+Build with:
+----
+$ make
+----
+
+Edit the Makefile as necessary.
+
+== noop.x
+
+This program allows for MPI executions of varying size, duration, and verbosity.
+For usage information, run:
+----
+$ ./noop.x -h
+----
