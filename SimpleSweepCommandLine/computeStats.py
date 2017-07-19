@@ -3,7 +3,7 @@ from collections import defaultdict
 import json, os
 
 def extractVals(A):
-    B = defaultdict(dict)
+    B = dict()
     A1 = A.split()
     for n, val in zip(A1[0::2], A1[1::2]):
         B[n] = float(val)
@@ -11,9 +11,7 @@ def extractVals(A):
 
 def computeStats(swiftArrayAsString):
     A = extractVals(swiftArrayAsString)
-    vals = []
-    for a in A:
-        vals += [A[a]]
+    vals = A.values()
     print('%d values, with min=%f, max=%f, avg=%f\n'%(len(vals),min(vals),max(vals),sum(vals)/float(len(vals))))
 
 
