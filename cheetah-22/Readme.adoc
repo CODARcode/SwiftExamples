@@ -47,3 +47,21 @@ noop 1: start: 1500397976
 noop 2: stop:  1500397977
 noop 1: stop:  1500397977
 ----
+
+== Example c.swift
+
+Launches the noop.x program for a 3-second duration, but kills it after 1 second.
+
+----
+$ run.sh c 3
+swift: launching: ../apps/noop.x on 2 processes
+noop: rank: 0/2
+noop: start: 1500497064
+swift: received exit code: 124
+swift: The launched application did not succeed.
+SUCCESS!
+----
+
+This counts as +SUCCESS!+ because the exit code was received by Swift.
+The workflow logic can respond to this condition.
+On timeout, the exit code is always 124 (cf. 'man timeout').
