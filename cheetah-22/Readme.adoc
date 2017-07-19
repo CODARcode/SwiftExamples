@@ -5,6 +5,10 @@ Location for examples for https://github.com/CODARcode/cheetah/issues/22[Cheetah
 
 Edit run.sh to set the MPIX_Launch location.
 
+== noop.x
+
+These examples run noop.x: see its https://github.com/CODARcode/SwiftExamples/apps[README] for details.
+
 == Example a.swift
 
 Runs the simple MPI program ../apps/noop.x with 1, 2, 4, 8 processes.
