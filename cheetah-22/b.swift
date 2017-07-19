@@ -5,7 +5,6 @@
 
 import io;
 import launch;
-import string;
 
 program = "../apps/noop.x";
 
