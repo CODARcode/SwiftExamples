@@ -1,0 +1,4 @@
+qsub -I -l nodes=2,ppn=1
+aprun -n 1 /etc/hostname
+aprun -n 1 "aprun -n 1 /etc/hostname"
+exit
