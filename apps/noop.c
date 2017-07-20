@@ -20,8 +20,9 @@
 static int mpi_rank = -1;
 static int mpi_size = -1;
 
-static int   delay = -1;
 static char* const EMPTY_STRING = "";
+
+static int   delay = -1;
 static char* label;
 static int   verbosity = 0;
 
