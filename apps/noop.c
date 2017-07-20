@@ -5,8 +5,10 @@
  */
 
 #define _GNU_SOURCE // for asprintf()
+#define __USE_POSIX
 #include <assert.h>
 #include <ctype.h>
+#include <limits.h>
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -41,8 +43,10 @@ main(int argc, char* argv[])
   label = EMPTY_STRING;
   scan_opts(argc, argv);
 
+  char hostname[HOST_NAME_MAX];
+  gethostname(hostname, HOST_NAME_MAX);
   if (verbosity == 2 || mpi_rank == 0)
-    verbose("rank: %i/%i", mpi_rank, mpi_size);
+    verbose("rank: %i/%i (%s)", mpi_rank, mpi_size, hostname);
 
   if (delay >= 0)
     time_delay();
